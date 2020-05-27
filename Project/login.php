@@ -2,10 +2,6 @@
 
 include 'dbConnect.php';
 
-   mysqli_query($link, "INSERT INTO users VALUES(null,'".$_POST['Name']."','".$_POST['Password']."','".$_POST['Email']."')" );
-
-
-
 error_reporting(0);
 //Button
 if (isset($_POST['login'])) {
@@ -22,9 +18,7 @@ if (isset($_POST['login'])) {
     $formUser = validateFormData($_POST['Name']);
     $formPass = validateFormData($_POST['Password']);
 
-    //connect to DB
-
-    include 'dbConnect.php';
+   
 
     //Create SQL query
 

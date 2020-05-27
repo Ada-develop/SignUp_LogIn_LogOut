@@ -68,7 +68,6 @@ if ($username && $email && $password) {
 //         
 
 //Checking HAshed:
-            $hashedPassword = '$2y$10$t6dS.7KMCx6DFva9QX2HWO/4sEu7CMJ0aTr8DtAAabUF4Cpk6cViu';
             
             //Login password correct or not 'add' == button submit
          
@@ -94,12 +93,12 @@ mysqli_close($link);
     </head>
     <body>
         <div class="container">
-            <h1>MySQL Insertion</h1>
+            <h1>Hashing pass verify login</h1>
 
 
             <p class="text-danger">* Required fields</p>
-
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+<!-- REDIRECT TO LOGIN PAGE ! SHOULD WORK TILL 05-28 20h!!!! -->
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 
                 <small class="text-danger">* <?php echo $nameError; ?></small>
                 <input type="text" placeholder="Username" name="username"><br><br>

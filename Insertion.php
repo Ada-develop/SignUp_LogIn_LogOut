@@ -68,8 +68,7 @@ if ($username && $email && $password) {
 //         
 
 //Checking HAshed:
-            $hashedPassword = '$2y$10$t6dS.7KMCx6DFva9QX2HWO/4sEu7CMJ0aTr8DtAAabUF4Cpk6cViu';
-            
+           
             //Login password correct or not 'add' == button submit
          
             if(isset($_POST['add'])){
@@ -89,11 +88,11 @@ mysqli_close($link);
     <head>
         <meta charset="UTF-8">
 
-        <title>MySQL Insertion</title>
+        <title>MySQL Insertion Hashed Passwords</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container">
+        <div class="container ">
             <h1>MySQL Insertion</h1>
 
 
