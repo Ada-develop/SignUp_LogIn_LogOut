@@ -15,8 +15,8 @@ if (isset($_POST['login'])) {
 
     //create variables and wrap the data with our function
 
-    $formUser = validateFormData($_POST['Name']);
-    $formPass = validateFormData($_POST['Password']);
+    $formUser = validateFormData($_POST['FormName']);
+    $formPass = validateFormData($_POST['FormPassword']);
 
    
 
@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
         
         
         
-        if (password_verify($formPass, $hashedPass)) {
+        if (password_verify($_POST['FormPassword'], $hashedPass)) {
 
             //Correct login details
             //Start the session
@@ -78,6 +78,8 @@ if (isset($_POST['login'])) {
     }
     
     //close the mysql connection
+
+    echo $hashedPass;
     
     mysqli_close($link);
 }
@@ -99,20 +101,21 @@ if (isset($_POST['login'])) {
             <p class="lead">Use this form to log in your account</p>
 
             <?php
-            
+            echo "<pre>";
+            print_r($_POST);
             echo $loginError;
-            
+            echo "</pre>";
             ?>
             
             
             <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                 <div class="form-group">
                     <label for="login-username" class="sr-only">Username</label>
-                    <input type="text" class="form-control" id="login-username" placeholder="Username" name="Name">
+                    <input type="text" class="form-control" id="login-username" placeholder="Username" name="FormName">
                 </div>
                 <div class="form-group">
                     <label for="login-password" class="sr-only">Password</label>
-                    <input type="password" class="form-control" id="login-username" placeholder="Password" name="Password">
+                    <input type="password" class="form-control" id="login-username" placeholder="Password" name="FormPassword">
                 </div>
                 <button type="submit" class="btn btn-default" name="login">Login!</button>
 
