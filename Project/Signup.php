@@ -48,6 +48,11 @@ if ($username && $email && $password) {
 
     if (mysqli_query($link, $query)) {
         echo "<div class='alert alert-success'>New record in DataBase!</div>";
+
+        //Redirect after DB data insert with hashed password!!!!!
+        header("Location: login.php");
+
+
     } else {
         echo " Error: " . $query . "<br>" . mysqli_error($link);
     }
@@ -79,6 +84,9 @@ if ($username && $email && $password) {
             }
             }
 
+
+
+
 //Close connection
 mysqli_close($link);
 
@@ -97,7 +105,7 @@ mysqli_close($link);
 
 
             <p class="text-danger">* Required fields</p>
-<!-- REDIRECT TO LOGIN PAGE ! SHOULD WORK TILL 05-28 20h!!!! -->
+
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 
                 <small class="text-danger">* <?php echo $nameError; ?></small>
@@ -109,6 +117,10 @@ mysqli_close($link);
                 <textarea cols="20" rows="5" maxlength="200" name="comment"></textarea>
 
                 <input type="submit" name="add" value="Add Entry">
+
+
+
+
 
 
             </form>
