@@ -43,13 +43,8 @@ if (isset($_POST['login'])) {
         //verify hashed password with the typed password
         // Checking or getting from form pass is equals to hashed
 
-
-                   
             //Login password correct or not 'add' == button submit
-         
-        
-        
-        
+
         if (password_verify($_POST['FormPassword'], $hashedPass)) {
 
             //Correct login details

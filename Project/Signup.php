@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include "dbConnect.php";
+include "login.php.php";
 
 //Empty vars by default:
 $username = $email = $password = $comment = "";
@@ -41,48 +42,46 @@ if (!$_POST["password"]) {
 $hashedPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 
+//DUBLICATE ACC
+
+
+
+
+
+
+
+
 //Checking or data is empty , and than do the record to DB
-if ($username && $email && $password) {
-    $query = "INSERT INTO users VALUES('$username','$email','$hashedPassword','Vilnius',NULL,CURRENT_TIMESTAMP,'".$_POST['comment']."');";
+    if ($username && $email && $password) {
+        $query = "INSERT INTO users VALUES('$username','$email','$hashedPassword','Vilnius',NULL,CURRENT_TIMESTAMP,'" . $_POST['comment'] . "');";
+        $exist = "SELECT Name, Email, Password FROM users WHERE Name='$username' OR Email='$email';";
+//
+        $dublicate = mysqli_query($link, $exist);
+//
+
+        if(mysqli_num_rows($dublicate) > 0) {
+            echo "User exist";
+            $page = $_SERVER['PHP_SELF'];
+            $sec = "10";
+            header("Refresh: $sec; url=$page");
+//
+
+        }elseif (mysqli_query($link, $query)) {
+            echo "<div class='alert alert-success'>New record in DataBase!</div>";
+
+            //Redirect after DB data insert with hashed password!!!!!
+            header("Location: login.php");
 
 
-    if (mysqli_query($link, $query)) {
-        echo "<div class='alert alert-success'>New record in DataBase!</div>";
-
-        //Redirect after DB data insert with hashed password!!!!!
-        header("Location: login.php");
+        } else {
+            echo " Error: " . $query . "<br>" . mysqli_error($link);
+        }
 
 
-    } else {
-        echo " Error: " . $query . "<br>" . mysqli_error($link);
-    }
-    
-    
-    
-                
-          
-    
-    
+
 }
 
-//PASSWORD CHECKING IN FORM! "CHECKING_INPUT PASSWORD" == "HASHED_PASSWORD", If correct login
 
-//HASHING:
- //$password = password_hash("mypassword", PASSWORD_DEFAULT);
- ////       echo $password;
-//         
-
-//Checking HAshed:
-            
-            //Login password correct or not 'add' == button submit
-         
-            if(isset($_POST['add'])){
-                if(password_verify($_POST['password'], $hashedPassword)){
-                echo "Password is correct";
-            }else{
-                echo "Incorrect password";
-            }
-            }
 
 
 
@@ -101,7 +100,7 @@ mysqli_close($link);
     </head>
     <body>
         <div class="container">
-            <h1>Hashing pass verify login</h1>
+            <h1>Hashing pass verify Sign up</h1>
 
 
             <p class="text-danger">* Required fields</p>
@@ -127,3 +126,5 @@ mysqli_close($link);
 
 
         </div>
+    </body>
+</html>
